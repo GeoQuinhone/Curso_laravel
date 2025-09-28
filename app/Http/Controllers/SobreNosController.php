@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class SobreNosController extends Controller
 {
     public function outroPrincipal () {
-        echo 'Bem vindo a página Sobre Nós';
+        return view('site.sobre-nos');
     }
 }
