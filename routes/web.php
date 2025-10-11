@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TesteController;
 
 /* Metodos usado anteriormente
 
@@ -33,37 +34,36 @@ Route::prefix('/app')->group(function () {
     Route::get('/clientes', function () {
         return 'Clientes';
     })->name('app.clientes');
-    Route::get('/fornecedores', function () {
-        return 'Fornecedores';
-    })->name('app.fornecedores');
+    Route::get('/fornecedores', [\App\Http\Controllers\FornecedorController::class, 'index'])->name('app.fornecedores');
     Route::get('/produtos', function () {
         return 'Produtos';
     })->name('app.produtos');
 });
-/*
-para acessar uma rota agrupada utilize por exemplo /app/clientes
-Callback é uma função que é passada como argumento para outra função e será executada
-"de volta" (called back) em um momento posterior, geralmente após a conclusão de alguma operação */
-
-
-// Redirecionamento de Rotas
-Route::get('/rota1', function () {})->name('site.rota1');
-
-//Redirecionamento dentro do callback
-Route::get('/rota2', function () {
-    return redirect()->route('site.rota1');
-})->name('site.rota2');
-/*Route::get('/rota2', function(){})->name('site.rota2');
-Route::redirect('/rota2','/rota1') */
 
 //Rota de contigência que é utilizada quando uma rota não é encontrada ou é inexistente (fallback)
 Route::fallback(function() {
     echo 'Rota não encontrada, <a href="'.route('site.index').'">clique aqui</a> para ir para a página inicial';
 });
 
+Route::get('/teste/{p1}/{p2}', [TesteController::class, 'teste'])->name('teste');
+// encaminhando parametros para o controller testecontroller
 
 
+/*
+para acessar uma rota agrupada utilize por exemplo /app/clientes
+Callback é uma função que é passada como argumento para outra função e será executada
+"de volta" (called back) em um momento posterior, geralmente após a conclusão de alguma operação */
 
+
+/* Redirecionamento de Rotas
+Route::get('/rota1', function () {})->name('site.rota1');
+
+Redirecionamento dentro do callback
+Route::get('/rota2', function () {
+    return redirect()->route('site.rota1');
+})->name('site.rota2');
+Route::get('/rota2', function(){})->name('site.rota2');
+Route::redirect('/rota2','/rota1') */
 
 /*
 Testes

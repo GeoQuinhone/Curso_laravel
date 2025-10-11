@@ -3,3 +3,5 @@ Routes é onde fazemos a requisição
 Controllers: onde fazemos a logica da rota, as actions.
 
 Views: contem todo o html que processa para a visualização do cliente (as telas da nossa aplicação)
+
+index blade fornecedor tem as primeiras aulas 
